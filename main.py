@@ -1,0 +1,5 @@
+import uvicorn
+from app.app import app  # Import the FastAPI app from app/app.py
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))

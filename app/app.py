@@ -1,19 +1,17 @@
 from fastapi import FastAPI, HTTPException, Request
+from pydantic import BaseModel
 from typing import List
+import json
 from hashlib import sha256
 from collections import Counter
 from datetime import datetime, timezone
-import json
 import os
-
-from app.models import MessageSender, Message, Block, ChainProposal, Participant
 
 app = FastAPI()
 
 # File paths
 CHAIN_FILE = 'data/blockchain.json'
 PARTICIPANTS_FILE = 'data/participants.json'
-
 
 # Load existing data if available
 def load_data():
@@ -34,6 +32,33 @@ def load_data():
         participants = set()
 
 load_data()
+
+class MessageSender(BaseModel):
+    ipAddress: str
+    uuid: str
+
+class Message(BaseModel):
+    sender: MessageSender
+    recipient: MessageSender
+    content: str
+    timestamp: str
+
+class Block(BaseModel):
+    index: int
+    previousHash: str
+    timestamp: str
+    message: Message
+    proof: int
+    hash: str
+
+class ChainProposal(BaseModel):
+    blocks: List[Block]
+    network: dict
+    status: dict
+
+class Participant(BaseModel):
+    ipAddress: str
+    uuid: str
 
 @app.post("/share-latest-chain")
 async def share_latest_chain(request: Request, proposal: ChainProposal):
@@ -226,8 +251,3 @@ def save_participants():
         # Convert participants back to list of dicts for JSON serialization
         participants_list = [{"ipAddress": p[0], "uuid": p[1]} for p in participants]
         json.dump({"participants": participants_list}, f, indent=4)
-
-if __name__ == "__main__":
-    import uvicorn
-
-    uvicorn.run(app, host="0.0.0.0", port=8000)
