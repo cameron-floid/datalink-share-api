@@ -45,11 +45,9 @@ coverage.xml
 # Jupyter Notebook
 .ipynb_checkpoints
 
-# Ignore all files in the data directory
-data/*
-
-# But keep the directory itself
-!/data/
+# Ignore all files in the data directory (named individually)
+blockchain.json
+participants.json
 
 # Miscellaneous
 *.swp
