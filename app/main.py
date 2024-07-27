@@ -14,6 +14,7 @@ app = FastAPI()
 CHAIN_FILE = 'data/blockchain.json'
 PARTICIPANTS_FILE = 'data/participants.json'
 
+
 # Load existing data if available
 def load_data():
     global chains, participants
