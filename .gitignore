@@ -46,10 +46,7 @@ coverage.xml
 .ipynb_checkpoints
 
 # Ignore all files in the data directory
-/data/*
-
-# But keep the directory itself
-!/data/
+data/*
 
 # Miscellaneous
 *.swp
