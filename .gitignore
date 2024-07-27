@@ -1,0 +1,57 @@
+# Byte-compiled files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Distribution / packaging
+*.egg
+*.egg-info/
+dist/
+build/
+*.egg-info/
+
+# Virtual environment
+venv/
+.env/
+
+# Log files
+*.log
+
+# .pytest_cache
+.pytest_cache/
+
+# mypy
+.mypy_cache/
+
+# coverage reports
+.coverage
+*.cover
+*.py,cover
+nosetests.xml
+coverage.xml
+*.cover
+
+# VS Code settings
+.vscode/
+
+# Environment variables
+.env
+*.env
+
+# PyCharm
+.idea/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Ignore all files in the data directory
+/data/*
+
+# But keep the directory itself
+!/data/
+
+# Miscellaneous
+*.swp
+*.swo
+.DS_Store
